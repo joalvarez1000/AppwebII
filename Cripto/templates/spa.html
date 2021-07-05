@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kakebo SPA</title>
+    <link rel="stylesheet" href="/static/css/milligram.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/spa.js"></script>
+</head>
+<body>
+    <header>App web - Criptomonedas 2.0</header>
+    <section class="container" >
+        <div class="row">
+            <div class="column column-70">
+                <div class="float-left" id="lista-movimientos">
+                    <h1>Compras</h1>
+                    <table class="tabla-movimientos">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>From</th>
+                                <th>Cantidad_from</th>
+                                <th>To</th>
+                                <th>Cantidad_to</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="column column-40">
+                <div class="saldo-movimientos" id="saldo-movimientos">
+                    <h1>Saldos</h1>
+                    <table class="saldo-movimientos">
+                            <tr>
+                                <th>From</th>
+                                <th>Cantidad_from</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div id="inversion">
+                    <h1>Resumen</h1>
+                    <div class="row">
+                        <div class="invert">
+                            <label for="invertido">Invertido</label>     
+                        </div>
+                        <div class="invert">
+                            <div id="invertido"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="invert">
+                            <label for="valorizado">Valorizado</label>
+                        </div>
+                        <div class="invert">
+                            <div id="valorizado"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="invert">
+                            <label for="resultado" >Resultado</label>    
+                        </div>
+                        <div class="invert">
+                            <div id="resultado"></div>    
+                        </div>
+                    </div>
+                    <button class="float-right" id="actualizar">Actualizar</button>
+                </div>
+            </div>
+        </div>   
+    </section>
+    <section>
+        <div class="detail-movimiento container">
+            <form>
+                <div class="row">
+                    <input type="hidden" id="idMovimiento">
+                </div>
+                <div class="row">
+                    <div class="column column-33">
+                        <label for="from">From</label>
+                        <select name="from" id="from">
+                            <option value="EUR">EUR</option>
+                            <option value="ETH">ETH</option>
+                            <option value="LTC">LTC</option>
+                            <option value="BNB">BNB</option>
+                            <option value="EOS">EOS</option>
+                            <option value="XML">XML</option>
+                            <option value="TRX">TRX</option>
+                            <option value="BTC">BTC</option>
+                            <option value="XRP">XRP</option>
+                            <option value="BCH">BCH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="BSV">BSV</option>
+                            <option value="ADA">ADA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column column-33">
+                    <label for="cantidad_from">Cantidad_from</label>
+                    <input type="number" name="cantidad_from" id="cantidad_from" step="any">
+                </div>
+                <div class="row">
+                    <div class="column column-33">
+                        <label for="to">To</label>
+                        <select name="to" id="to">
+                            <option value="EUR">EUR</option>
+                            <option value="ETH">ETH</option>
+                            <option value="LTC">LTC</option>
+                            <option value="BNB">BNB</option>
+                            <option value="EOS">EOS</option>
+                            <option value="XML">XML</option>
+                            <option value="TRX">TRX</option>
+                            <option value="BTC">BTC</option>
+                            <option value="XRP">XRP</option>
+                            <option value="BCH">BCH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="BSV">BSV</option>
+                            <option value="ADA">ADA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column column-33">
+                    <label for="cantidad_to">Cantidad_to</label>
+                    <div id="cto"></div>
+                    
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <button id="valor">Valor</button> 
+                    </div>   
+                </div>
+            </form>
+                <div class="row">
+                    <div class="column">
+                        <button class="float-right" id="ok">OK</button> 
+                        
+                    </div>   
+                </div>
+        </div>
+    </section>
+    <section class="container">
+        
+    </section>
+    <footer>&copy 2021 - Todos los derechos reservados</footer>
+</body>
+</html>
