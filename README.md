@@ -1,5 +1,5 @@
 
-Instalación
+###**Instalación**
 Instalar dependencias
 pip install -r requirements.txt
 Crear variables de entorno
@@ -21,7 +21,8 @@ sqlite3 <ruta al fichero puesto en config.py>
 .read <ruta relativa a migrations/initial.sql>
 .tables 
 .q
-Ejecutar en local
+
+###**Ejecutar en local**
 Simplemente escribir
 
 flask run
