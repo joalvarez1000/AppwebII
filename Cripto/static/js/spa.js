@@ -9,10 +9,6 @@ let losMovimientos
 
 xhr = new XMLHttpRequest()
 
-
-        
-
-
 //recibe la respuesta cuando llamamos a la api
 function recibeRespuesta() {
     if (this.readyState === 4 && (this.status === 200 || this.status === 201 )) {
@@ -52,18 +48,21 @@ function gestionaRespuestaApiCointmarket () {
     
 
     /* Seleccionar el id del selector del html para el precio*/ 
-    var cantidad_to = document.querySelector ("#cto")
-    cantidad_to.innerHTML = ""
+    var cantidad_to = document.querySelector ("#cantidad_to")
+    cantidad_to.innerHTML = "0"
    
 
-    /* Crear los elementos donde colgaran en el html */
+    /* Crear los elementos donde colgaran en el html 
     const div = document.createElement ("div")
     const p = document.createElement ("p")
     div.className = "precioTo"
     p.setAttribute ("id", "cantidad_to")
     p.innerHTML = PrecioTo
     div.appendChild (p)
-    cantidad_to.appendChild (div)
+    cantidad_to.appendChild (div)*/
+    
+    cantidad_to.innerHTML =PrecioTo
+    
     }
     
 }
@@ -82,7 +81,7 @@ function gestionaValorizado () {
             return
         }
     const invertidoResultado = parseFloat( document.querySelector ("#invertidoResultado").outerText)
-    valorEur += parseFloat( respuesta.mensaje)
+    valorEur = parseFloat( respuesta.mensaje)
 
     console.log (valorEur)
     console.log (invertidoResultado)
@@ -214,12 +213,12 @@ function muestraMovimientos() {
                     invertido.appendChild (p1)
 
                     
-                    const dd = key
-                    console.log (JSON.stringify(dd))
+                    const llamadaclave = key
+                    console.log (JSON.stringify(llamadaclave))
                     xhr.open ('POST', `http://localhost:5000/api/v1/actualizar`, true)
                     xhr.onload = gestionaValorizado
                     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")    
-                    xhr.send(JSON.stringify(dd))
+                    xhr.send(JSON.stringify(llamadaclave))
                     
                 })       
     }
@@ -302,10 +301,12 @@ function validar(movimiento) {
         return false
     }
         
-    //if (movimiento.esGasto && !movimiento.categoria) {
-    //    alert("Debe seleccionar categoria del gasto")
-    //    return false
-    //}
+    
+    
+    if (movimiento.cantidad_to === "0") {
+        alert("Debe solicitar valor")
+        return false
+    }
 
     //if (!movimiento.esGasto && movimiento.categoria) {
     //    alert("Un ingreso no puede tener categoria")
@@ -323,6 +324,9 @@ function validar(movimiento) {
 function llamaApiCoinmarket (evento) {
     evento.preventDefault ()
     
+
+    
+
     const movimiento = {}
     movimiento.moneda_from   = document.querySelector ("#from").value
     movimiento.cantidad_from = document.querySelector ("#cantidad_from").value
@@ -377,6 +381,13 @@ window.onload = function() {
     
     document.querySelector("#ok")
         .addEventListener("click", llamaApiCreaCoinMovimiento)
-
+    
+    document.querySelector("#cantidad_from")
+        .addEventListener("change", (evento) => {
+            evento.preventDefault()
+            var cantidad_to = document.querySelector ("#cantidad_to")
+            cantidad_to.innerHTML = "0"
+            
+        })
     
 }

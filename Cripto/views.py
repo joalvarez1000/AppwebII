@@ -9,6 +9,8 @@ from datetime import datetime
 
 
 dbManager = DBmanager (app.config.get ("DATABASE"))
+Secretkey = app.config.get ("SECRET_KEY")
+
 
 @app.route ("/api/v1/actualizar", methods = ['POST'])
 def lista():
@@ -21,7 +23,7 @@ def lista():
                 cl = clave
                 vl = valor
                 eur ="EUR"
-                url = f"https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={vl}&symbol={cl}&convert={eur}&CMC_PRO_API_KEY=b0e91d93-235f-4459-b659-a1d25a9f8866"
+                url = f"https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={vl}&symbol={cl}&convert={eur}&CMC_PRO_API_KEY={Secretkey}"
                 res = requests.get(url)
                 res1 = res.json()
                 acumulado += res1['data']['quote']['EUR']['price']
@@ -97,7 +99,7 @@ def detalleMovimiento(id=None):
 @app.route('/api/v1/par/<_from>/<_to>/<quantity>')
 @app.route('/api/v1/par/<_from>/<_to>')
 def par(_from, _to, quantity = 1.0):
-    url = f"https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={quantity}&symbol={_from}&convert={_to}&CMC_PRO_API_KEY=b0e91d93-235f-4459-b659-a1d25a9f8866"
+    url = f"https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={quantity}&symbol={_from}&convert={_to}&CMC_PRO_API_KEY={Secretkey}"
     res = requests.get(url)
     print (res)
     return Response(res)
